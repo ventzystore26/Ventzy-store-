@@ -1,0 +1,160 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ventzy Store | MLBB Recharge</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:Arial,sans-serif;background:#100d1c;color:white}
+header{padding:22px 18px;background:#1c1630;display:flex;justify-content:space-between;align-items:center}
+.logo{font-size:24px;font-weight:900;color:#bd8cff}
+.logo span{color:white}
+nav{padding:15px;text-align:center;background:#171226}
+nav a{color:#ddd;text-decoration:none;margin:0 10px;font-size:13px}
+.hero{text-align:center;padding:65px 20px 55px;background:linear-gradient(140deg,#32145b,#111027,#25104b)}
+.hero h1{font-size:35px;margin-bottom:13px}
+.hero h1 span{color:#c58aff}
+.hero p{color:#d2c8e3;line-height:1.6}
+.tag{display:inline-block;background:#45246c;padding:8px 15px;border-radius:20px;margin-bottom:18px;font-size:12px}
+.section{padding:35px 18px}
+.section h2{text-align:center;font-size:25px;margin-bottom:10px}
+.sub{text-align:center;color:#aaa;margin-bottom:25px;font-size:13px}
+.packages{display:grid;grid-template-columns:repeat(2,1fr);gap:13px}
+.package{background:#211a32;border:1px solid #44325c;border-radius:13px;padding:18px 10px;text-align:center}
+.package h3{font-size:19px;margin-bottom:9px}
+.package p{color:#c9a5ff;font-size:13px;margin-bottom:13px}
+.package button,.order button{background:#9852e9;color:white;border:0;padding:11px 15px;border-radius:8px;font-weight:bold;width:100%}
+.package button:active,.order button:active{opacity:.7}
+.order{margin:10px 18px 35px;padding:22px;background:#211a32;border-radius:15px;border:1px solid #63418b}
+.order h2{text-align:center;margin-bottom:18px}
+label{display:block;margin:13px 0 7px;color:#ddd;font-size:13px}
+input,select{width:100%;padding:13px;background:#120e20;border:1px solid #55416c;border-radius:8px;color:white;font-size:15px}
+.order button{margin-top:18px;padding:14px}
+#message{color:#c9a5ff;margin-top:12px;text-align:center;font-size:13px}
+footer{text-align:center;background:#1b1529;padding:25px;color:#aaa;font-size:12px;line-height:2}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo">VENTZY <span>STORE</span></div>
+  <div>💎</div>
+</header>
+
+<nav>
+  <a href="#home">Home</a>
+  <a href="#packages">Diamonds</a>
+  <a href="#order">Order</a>
+</nav>
+
+<section class="hero" id="home">
+  <div class="tag">⚡ MLBB DIAMOND STORE</div>
+  <h1>LEVEL UP WITH <span>VENTZY</span></h1>
+  <p>Your MLBB recharge destination.<br>
+  Choose your diamonds and prepare your order!</p>
+</section>
+
+<section class="section" id="packages">
+  <h2>💎 Diamond Packages</h2>
+  <p class="sub">Select your preferred diamond package</p>
+
+  <div class="packages">
+    <div class="package">
+      <h3>55 💎</h3>
+      <p>Diamond Pack</p>
+      <button onclick="choose('55 Diamonds')">Select</button>
+    </div>
+    <div class="package">
+      <h3>86 💎</h3>
+      <p>Diamond Pack</p>
+      <button onclick="choose('86 Diamonds')">Select</button>
+    </div>
+    <div class="package">
+      <h3>110 💎</h3>
+      <p>Diamond Pack</p>
+      <button onclick="choose('110 Diamonds')">Select</button>
+    </div>
+    <div class="package">
+      <h3>165 💎</h3>
+      <p>Diamond Pack</p>
+      <button onclick="choose('165 Diamonds')">Select</button>
+    </div>
+    <div class="package">
+      <h3>275 💎</h3>
+      <p>Diamond Pack</p>
+      <button onclick="choose('275 Diamonds')">Select</button>
+    </div>
+    <div class="package">
+      <h3>Weekly Pass</h3>
+      <p>Weekly Membership</p>
+      <button onclick="choose('Weekly Pass')">Select</button>
+    </div>
+  </div>
+</section>
+
+<section class="order" id="order">
+  <h2>🛒 Place Your Order</h2>
+
+  <label>MLBB User ID</label>
+  <input id="uid" placeholder="Enter your User ID">
+
+  <label>Zone ID</label>
+  <input id="zone" placeholder="Enter your Zone ID">
+
+  <label>Select Package</label>
+  <select id="package">
+    <option value="">Choose a package</option>
+    <option>55 Diamonds</option>
+    <option>86 Diamonds</option>
+    <option>110 Diamonds</option>
+    <option>165 Diamonds</option>
+    <option>275 Diamonds</option>
+    <option>Weekly Pass</option>
+  </select>
+
+  <button onclick="makeOrder()">COPY ORDER DETAILS</button>
+  <p id="message"></p>
+</section>
+
+<footer>
+  <h3 style="color:#c58aff">VENTZY STORE</h3>
+  MLBB Diamond Recharge Store<br>
+  Thank you for choosing Ventzy Store!<br>
+  © 2026 Ventzy Store. All rights reserved.
+</footer>
+
+<script>
+function choose(item){
+  document.getElementById('package').value=item;
+  document.getElementById('order').scrollIntoView({behavior:'smooth'});
+}
+function makeOrder(){
+  const uid=document.getElementById('uid').value.trim();
+  const zone=document.getElementById('zone').value.trim();
+  const pack=document.getElementById('package').value;
+  if(!uid||!zone||!pack){
+    document.getElementById('message').innerText=
+    'Please complete all fields.';
+    return;
+  }
+  const details='VENTZY STORE ORDER\nMLBB ID: '+uid+
+  '\nZone ID: '+zone+'\nPackage: '+pack;
+  if(navigator.clipboard){
+    navigator.clipboard.writeText(details).then(()=>{
+      document.getElementById('message').innerText=
+      'Order details copied! Send them to the store admin.';
+    }).catch(()=>{
+      document.getElementById('message').innerText=
+      'Please copy your order details manually.';
+    });
+  }else{
+    document.getElementById('message').innerText=
+    'Please copy your order details manually.';
+  }
+}
+</script>
+
+</body>
+</html>
